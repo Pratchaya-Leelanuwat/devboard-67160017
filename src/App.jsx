@@ -38,9 +38,35 @@ function App() {
   return (
     <>
       <Navbar />
-      <PostCard title="ทดสอบ" body="นี่คือเนื้อหาทดสอบ" />
-      <PostList posts={POSTS} />
-      <UserCard name="Pratchaya Leelanuwat" email="67160017@go.buu.ac.th" />
+      <div
+        style={{
+          maxWidth: "900px",
+          margin: "2rem auto",
+          padding: "0 1rem",
+          display: "grid",
+          gridTemplateColumns: "2fr 1fr",
+          gap: "2rem",
+        }}
+      >
+        <div>
+          <PostList posts={POSTS} />
+        </div>
+
+        <div>
+          <h2
+            style={{
+              color: "#2d3748",
+              borderBottom: "2px solid #1e40af",
+              paddingBottom: "0.5rem",
+            }}
+          >
+            สมาชิก
+          </h2>
+          {USERS.map((user) => (
+            <UserCard key={user.id} name={user.name} email={user.email} />
+          ))}
+        </div>
+      </div>
     </>
   );
 }
