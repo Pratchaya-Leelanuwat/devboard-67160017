@@ -4,6 +4,23 @@ function UserCard({ name, email }) {
     .map((n) => n[0])
     .join("");
 
+  const charCode = name.charCodeAt(0);
+  const colorIndex = charCode % 3;
+
+  let avatarColor = "";
+  switch (colorIndex) {
+    case 0:
+      avatarColor = "blue";
+      break;
+    case 1:
+      avatarColor = "green";
+      break;
+    case 2:
+      avatarColor = "purple";
+      break;
+    default:
+      avatarColor = "blue";
+  }
   return (
     <div
       style={{
@@ -21,7 +38,7 @@ function UserCard({ name, email }) {
         style={{
           width: "40px",
           height: "40px",
-          background: "#1e40af",
+          background: avatarColor,
           color: "white",
           borderRadius: "50%",
           display: "flex",
