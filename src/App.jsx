@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import "./App.css";
 import Navbar from "../components/Navbar";
+import PostCard from "../components/PostCard";
 
 function App() {
   const POSTS = [
@@ -35,6 +36,7 @@ function App() {
   return (
     <>
       <Navbar />
+      <PostCard title="ทดสอบ" body="นี่คือเนื้อหาทดสอบ" />
     </>
   );
 }
