@@ -4,6 +4,7 @@ import "./App.css";
 import Navbar from "../components/Navbar";
 import PostCard from "../components/PostCard";
 import PostList from "../components/PostList";
+import UserCard from "../components/UserCard";
 
 function App() {
   const POSTS = [
@@ -39,6 +40,7 @@ function App() {
       <Navbar />
       <PostCard title="ทดสอบ" body="นี่คือเนื้อหาทดสอบ" />
       <PostList posts={POSTS} />
+      <UserCard name="Pratchaya Leelanuwat" email="67160017@go.buu.ac.th" />
     </>
   );
 }
