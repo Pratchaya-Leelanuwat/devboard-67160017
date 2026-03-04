@@ -1,4 +1,4 @@
-function PostCard({ title, body }) {
+function PostCard({ title, body, isFavorite, onToggleFavorite }) {
   return (
     <div
       style={{
@@ -11,6 +11,7 @@ function PostCard({ title, body }) {
     >
       <h3 style={{ margin: "0 0 0.5rem", color: "#1e40af" }}>{title}</h3>
       <p style={{ margin: 0, color: "#4a5568", lineHeight: 1.6 }}>{body}</p>
+      <h1>{isFavorite}</h1>
     </div>
   );
 }

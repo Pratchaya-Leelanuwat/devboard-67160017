@@ -1,7 +1,11 @@
+import { useState } from "react";
 import PostCard from "./PostCard";
 import PostCount from "./PostCount";
 
 function PostList({ posts }) {
+  const [search, setSearch] = useState("");
+
+  const filtered = posts.filter((post) => post.title.toLowerCase().includes(search.toLocaleLowerCase()))
   return (
     <div>
       <h2
@@ -12,11 +16,26 @@ function PostList({ posts }) {
         }}
       >
         โพสต์ล่าสุด
-        <PostCount post={posts} />
-      </h2>
-      {posts.map((post) => (
-        <PostCard key={post.id} title={post.title} body={post.body} />
-      ))}
+        </h2>
+
+        <input type="text" placeholder="ค้นหาโพสต์ที่ต้องการ..." value={search} onChange={(e) => setSearch(e.target.value)} style={{
+          width: "100%",
+          padding: "0.5rem 0.75rem",
+          border: "1px solid #cbd5e0",
+          borderRadius: "6px",
+          fontSize: "1rem",
+          marginBottom: "1rem",
+          boxSizing: "border-box"
+        }}/>
+
+        {filtered.length == 0 && (
+          <p style={{color:"#718096", textAlign:"center", padding: "2rem"}}>
+            ไม่พบโพสต์ที่ต้องการ
+          </p>
+        )}
+    {filtered.map((post) => (
+      <PostCard key={post.id} title={post.title} body={post.body}/>
+    ))}
     </div>
   );
 }
