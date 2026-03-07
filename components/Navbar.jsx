@@ -1,4 +1,4 @@
-function Navbar({ favoriteCount }) {
+const Navbar = ({ favoriteCount }) => {
   return (
     <nav
       style={{
@@ -32,6 +32,6 @@ function Navbar({ favoriteCount }) {
       )}
     </nav>
   );
-}
+};
 
 export default Navbar;

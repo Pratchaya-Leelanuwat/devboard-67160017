@@ -33,25 +33,25 @@ const USERS = [
   { id: 2, name: "สมหญิง รักเรียน", email: "somying@dev.com" },
   { id: 3, name: "วิชาญ โค้ดเก่ง", email: "wichan@dev.com" },
 ];
-function App() {
+export default function App() {
   const [posts, setPosts] = useState(INITIAL_POSTS);
   const [favorites, setFavorites] = useState([]);
 
-  function handleToggleFavorite(postId) {
+  const handleToggleFavorite = (postId) => {
     setFavorites((prev) =>
       prev.includes(postId)
         ? prev.filter((id) => id !== postId)
         : [...prev, postId],
     );
-  }
-  function handleAddPost({ title, body }) {
+  };
+  const handleAddPost = ({ title, body }) => {
     const newPost = {
       id: Date.now(),
       title,
       body,
     };
     setPosts((prev) => [newPost, ...prev]);
-  }
+  };
 
   return (
     <>
@@ -66,7 +66,6 @@ function App() {
           gap: "2rem",
         }}
       >
-        {/* คอลัมน์ซ้าย */}
         <div>
           <AddPostForm onAddPost={handleAddPost} />
           <PostList
@@ -76,7 +75,6 @@ function App() {
           />
         </div>
 
-        {/* คอลัมน์ขวา */}
         <div>
           <h2
             style={{
@@ -95,5 +93,3 @@ function App() {
     </>
   );
 }
-
-export default App;

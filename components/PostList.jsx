@@ -2,7 +2,7 @@ import { useState } from "react";
 import PostCard from "./PostCard";
 import PostCount from "./PostCount";
 
-function PostList({ posts, favorites, onToggleFavorite }) {
+const PostList = ({ posts, favorites, onToggleFavorite }) => {
   const [search, setSearch] = useState("");
 
   const filtered = posts.filter((post) =>
@@ -52,6 +52,6 @@ function PostList({ posts, favorites, onToggleFavorite }) {
       ))}
     </div>
   );
-}
+};
 
 export default PostList;

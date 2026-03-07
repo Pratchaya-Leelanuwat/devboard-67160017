@@ -1,4 +1,4 @@
-function UserCard({ name, email }) {
+const UserCard = ({ name, email }) => {
   const initials = name
     .split(" ")
     .map((n) => n[0])
@@ -56,6 +56,6 @@ function UserCard({ name, email }) {
       </div>
     </div>
   );
-}
+};
 
 export default UserCard;

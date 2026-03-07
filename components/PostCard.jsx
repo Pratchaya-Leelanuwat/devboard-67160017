@@ -1,4 +1,4 @@
-function PostCard({ title, body, isFavorite, onToggleFavorite }) {
+const PostCard = ({ title, body, isFavorite, onToggleFavorite }) => {
   return (
     <div
       style={{
@@ -27,6 +27,6 @@ function PostCard({ title, body, isFavorite, onToggleFavorite }) {
       </button>
     </div>
   );
-}
+};
 
 export default PostCard;

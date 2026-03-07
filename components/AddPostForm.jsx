@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-function AddPostForm({ onAddPost }) {
+const AddPostForm = ({ onAddPost }) => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!title.trim() || !body.trim()) {
       return "";
@@ -13,7 +13,7 @@ function AddPostForm({ onAddPost }) {
     onAddPost({ title, body });
     setTitle("");
     setBody("");
-  }
+  };
 
   return (
     <form
@@ -79,6 +79,6 @@ function AddPostForm({ onAddPost }) {
       </button>
     </form>
   );
-}
+};
 
 export default AddPostForm;
