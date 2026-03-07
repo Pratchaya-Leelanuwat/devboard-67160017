@@ -11,7 +11,20 @@ function PostCard({ title, body, isFavorite, onToggleFavorite }) {
     >
       <h3 style={{ margin: "0 0 0.5rem", color: "#1e40af" }}>{title}</h3>
       <p style={{ margin: 0, color: "#4a5568", lineHeight: 1.6 }}>{body}</p>
-      <h1>{isFavorite}</h1>
+      <button
+        onClick={onToggleFavorite}
+        style={{
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+          fontSize: "1.2rem",
+          padding: "0.25rem 0.5rem",
+          borderRadius: "4px",
+          color: isFavorite ? "#e53e3e" : "#a0aec0",
+        }}
+      >
+        {isFavorite ? "❤️ ถูกใจแล้ว" : "🤍 ถูกใจ"}
+      </button>
     </div>
   );
 }
