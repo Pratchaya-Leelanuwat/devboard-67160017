@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import PostList from "../components/PostList";
 import UserCard from "../components/UserCard";
 import AddPostForm from "../components/AddPostForm";
+import PostSkeleton from "../components/PostSkeleton";
 
 const INITIAL_POSTS = [
   {
@@ -33,6 +34,9 @@ const USERS = [
   { id: 2, name: "สมหญิง รักเรียน", email: "somying@dev.com" },
   { id: 3, name: "วิชาญ โค้ดเก่ง", email: "wichan@dev.com" },
 ];
+
+const skeletonPosts = [1, 2, 3];
+
 export default function App() {
   const [posts, setPosts] = useState(INITIAL_POSTS);
   const [favorites, setFavorites] = useState([]);
@@ -68,11 +72,15 @@ export default function App() {
       >
         <div>
           <AddPostForm onAddPost={handleAddPost} />
-          <PostList
-            posts={posts}
-            favorites={favorites}
-            onToggleFavorite={handleToggleFavorite}
-          />
+          {posts.length === 0 ? (
+            skeletonPosts.map((skeleton) => <PostSkeleton key={skeleton} />)
+          ) : (
+            <PostList
+              posts={posts}
+              favorites={favorites}
+              onToggleFavorite={handleToggleFavorite}
+            />
+          )}
         </div>
 
         <div>
