@@ -3,7 +3,7 @@ const PostCard = ({ title, body, isFavorite, onToggleFavorite }) => {
     <div
       style={{
         border: "1px solid #e2e8f0",
-        borderRadius: "8px",
+        borderRadius: "10px",
         padding: "1rem",
         marginBottom: "1rem",
         background: "white",
