@@ -4,22 +4,38 @@ import PostCount from "./PostCount";
 
 const PostList = ({ posts, favorites, onToggleFavorite }) => {
   const [search, setSearch] = useState("");
+  const [sortOrder, setSortOrder] = useState("oldest");
 
+  const toggleSortOrder = () => {
+    setSortOrder((order) => (order === "oldest" ? "newest" : "oldest"));
+  };
   const filtered = posts.filter((post) =>
     post.title.toLowerCase().includes(search.toLocaleLowerCase()),
   );
+
+  const sortedPosts = [...filtered].sort((a, b) => {
+    if (sortOrder === "oldest") {
+      return a.id - b.id;
+    } else {
+      return b.id - a.id;
+    }
+  });
+
   return (
     <div>
-      <h2
+      <div
         style={{
           color: "#2d3748",
           borderBottom: "2px solid #1e40af",
           paddingBottom: "0.5rem",
+          display: "flex",
+          alignItems: "center",
+          gap: "8px",
         }}
       >
-        โพสต์ล่าสุด
-      </h2>
-
+        <h2>โพสต์ล่าสุด</h2>
+        <PostCount post={posts} />
+      </div>
       <input
         type="text"
         placeholder="ค้นหาโพสต์ที่ต้องการ..."
@@ -35,13 +51,18 @@ const PostList = ({ posts, favorites, onToggleFavorite }) => {
           boxSizing: "border-box",
         }}
       />
+      {sortOrder == "newest" ? (
+        <button onClick={toggleSortOrder}> ใหม่สุด</button>
+      ) : (
+        <button onClick={toggleSortOrder}>เก่าสุด</button>
+      )}
 
-      {filtered.length == 0 && (
+      {sortedPosts.length == 0 && (
         <p style={{ color: "#718096", textAlign: "center", padding: "2rem" }}>
           ไม่พบโพสต์ที่ต้องการ
         </p>
       )}
-      {filtered.map((post) => (
+      {sortedPosts.map((post) => (
         <PostCard
           key={post.id}
           title={post.title}
