@@ -30,22 +30,35 @@ const AddPostForm = ({ onAddPost }) => {
         เพิ่มโพสต์ใหม่
       </h3>
 
-      <input
-        type="text"
-        placeholder="หัวข้อโพสต์"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        style={{
-          width: "100%",
-          padding: "0.5rem",
-          marginBottom: "0.5rem",
-          border: "1px solid #cbd5e0",
-          borderRadius: "4px",
-          fontSize: "1rem",
-          boxSizing: "border-box",
-        }}
-      />
-
+      <div>
+        <div>
+          {title.length > 10 ? (
+            <span style={{ display: "flex", alignItems: "center" }}>
+              <p style={{ color: "green" }}>{title.length}</p>/100
+            </span>
+          ) : (
+            <span style={{ display: "flex", alignItems: "center" }}>
+              <p style={{ color: "red" }}>{title.length}</p>/100
+            </span>
+          )}
+        </div>
+        <input
+          maxLength={100}
+          type="text"
+          placeholder="หัวข้อโพสต์"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          style={{
+            width: "100%",
+            padding: "0.5rem",
+            marginBottom: "0.5rem",
+            border: "1px solid #cbd5e0",
+            borderRadius: "4px",
+            fontSize: "1rem",
+            boxSizing: "border-box",
+          }}
+        />
+      </div>
       <textarea
         placeholder="เนื้อหาโพสต์"
         value={body}
