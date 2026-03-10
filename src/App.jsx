@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./App.css";
 import Navbar from "../components/Navbar";
@@ -39,7 +39,14 @@ const skeletonPosts = [1, 2, 3];
 
 export default function App() {
   const [posts, setPosts] = useState(INITIAL_POSTS);
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(() => {
+    const favoriteFromStorage = localStorage.getItem("favorites");
+    return favoriteFromStorage ? JSON.parse(favoriteFromStorage) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
 
   const handleToggleFavorite = (postId) => {
     setFavorites((prev) =>
@@ -48,6 +55,7 @@ export default function App() {
         : [...prev, postId],
     );
   };
+
   const handleAddPost = ({ title, body }) => {
     const newPost = {
       id: Date.now(),
