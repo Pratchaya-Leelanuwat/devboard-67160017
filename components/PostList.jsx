@@ -47,32 +47,15 @@ const PostList = ({ favorites, onToggleFavorite }) => {
 
   if (error)
     return (
-      <div
-        style={{
-          padding: "1.5rem",
-          background: "#fff5f5",
-          border: "1px solid #fc8181",
-          borderRadius: "8px",
-          color: "#c53030",
-        }}
-      >
+      <div className="p-5 bg-white border border-red-300 rounded-lg color-red-500">
         เกิดข้อผิดพลาด: {error}
       </div>
     );
 
   return (
     <div>
-      <div
-        style={{
-          color: "#2d3748",
-          borderBottom: "2px solid #1e40af",
-          paddingBottom: "0.5rem",
-          display: "flex",
-          alignItems: "center",
-          gap: "8px",
-        }}
-      >
-        <h2>โพสต์ล่าสุด</h2>
+      <div className="flex items-center justify-between my-3">
+        <h2 className="text-lg font-bold text-blue-600">โพสต์ล่าสุด</h2>
         <PostCount post={posts} />
       </div>
       <input
@@ -80,26 +63,29 @@ const PostList = ({ favorites, onToggleFavorite }) => {
         placeholder="ค้นหาโพสต์ที่ต้องการ..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        style={{
-          width: "100%",
-          padding: "0.5rem 0.75rem",
-          border: "1px solid #cbd5e0",
-          borderRadius: "6px",
-          fontSize: "1rem",
-          marginBottom: "1rem",
-          boxSizing: "border-box",
-        }}
+        className="text-gray-700 border p-1 border-blue-600 flex items-center gap-3 my-2"
       />
-      {sortOrder == "newest" ? (
-        <button onClick={toggleSortOrder}> ใหม่สุด</button>
-      ) : (
-        <button onClick={toggleSortOrder}>เก่าสุด</button>
-      )}
+      <div className="flex items-center gap-2 text-lg font-bold text-green-500">
+        <p>โพสต์เรียงตาม: </p>
+        {sortOrder == "newest" ? (
+          <button
+            onClick={toggleSortOrder}
+            className="bg-blue-500! text-white px-3 py-1 rounded-lg hover:brightness-120"
+          >
+            ใหม่สุด
+          </button>
+        ) : (
+          <button
+            onClick={toggleSortOrder}
+            className="bg-blue-500! text-white px-3 py-1 rounded-lg hover:brightness-120"
+          >
+            เก่าสุด
+          </button>
+        )}
+      </div>
 
       {sortedPosts.length == 0 && (
-        <p style={{ color: "#718096", textAlign: "center", padding: "2rem" }}>
-          ไม่พบโพสต์ที่ต้องการ
-        </p>
+        <p className="text-gray-400 text-center p-8">ไม่พบโพสต์ที่ต้องการ</p>
       )}
       {sortedPosts.map((post) => (
         <PostCard

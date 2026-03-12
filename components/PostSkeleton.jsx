@@ -1,25 +1,9 @@
 const PostSkeleton = () => {
   return (
-    <div style={{ marginBottom: "20px" }}>
-      <div
-        style={{
-          height: "30px",
-          width: "60%",
-          background: "#e2e8f8",
-          marginBottom: "5px",
-        }}
-      ></div>
-      <div
-        style={{
-          height: "50px",
-          width: "50%",
-          background: "#e2e8f8",
-          marginBottom: "5px",
-        }}
-      ></div>
-      <div
-        style={{ height: "20px", width: "40%", background: "#e2e8f8" }}
-      ></div>
+    <div className="mb-5">
+      <div className="h-7.5 w-[60%] bg-[#e2e8f8] mb-2"></div>
+      <div className="h-12.5 w-1/2 bg-[#e2e8f8] mb-2"></div>
+      <div className="h-5 w-[40%] bg-[#e2e8f8]"></div>
     </div>
   );
 };

@@ -22,37 +22,15 @@ const UserCard = ({ name, email }) => {
       avatarColor = "blue";
   }
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "1rem",
-        border: "1px solid #e2e8f0",
-        borderRadius: "8px",
-        padding: "0.75rem 1rem",
-        marginBottom: "0.75rem",
-        background: "white",
-      }}
-    >
+    <div className="flex items-center gap-4 border border-blue-200 rounded-lg p-4 mb-4 bg-white shadow-lg">
       <div
-        style={{
-          width: "40px",
-          height: "40px",
-          background: avatarColor,
-          color: "white",
-          borderRadius: "50%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontWeight: "bold",
-          fontSize: "0.9rem",
-        }}
+        className={`flex items-center justify-center rounded-full text-white font-bold p-2 ${avatarColor === "blue" ? "bg-blue-500" : avatarColor === "green" ? "bg-green-500" : "bg-purple-500"}`}
       >
         {initials}
       </div>
       <div>
-        <div style={{ fontWeight: "bold", color: "#2d3748" }}>{name}</div>
-        <div style={{ fontSize: "0.85rem", color: "#718096" }}>{email}</div>
+        <div className="font-bold text-gray-800">{name}</div>
+        <div className="text-gray-600">{email}</div>
       </div>
     </div>
   );
