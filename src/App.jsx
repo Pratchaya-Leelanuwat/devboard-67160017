@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Navbar from "../components/Navbar";
 import PostList from "../components/PostList";
-import UserCard from "../components/UserCard";
 import AddPostForm from "../components/AddPostForm";
 import PostSkeleton from "../components/PostSkeleton";
+import UserList from "../components/UserList";
 
 const INITIAL_POSTS = [
   {
@@ -29,12 +29,6 @@ const INITIAL_POSTS = [
     body: "Props คือ argument ที่ส่งให้ component เหมือนกับการส่งพารามิเตอร์ให้ฟังก์ชัน",
   },
 ];
-const USERS = [
-  { id: 1, name: "สมชาย ใจดี", email: "somchai@dev.com" },
-  { id: 2, name: "สมหญิง รักเรียน", email: "somying@dev.com" },
-  { id: 3, name: "วิชาญ โค้ดเก่ง", email: "wichan@dev.com" },
-];
-
 const skeletonPosts = [1, 2, 3];
 
 export default function App() {
@@ -83,12 +77,7 @@ export default function App() {
         </div>
 
         <div>
-          <h2 className="text-blue-800 text-xl font-bold text-center border border-b-4 p-2 mb-2">
-            รายชื่อสมาชิก
-          </h2>
-          {USERS.map((user) => (
-            <UserCard key={user.id} name={user.name} email={user.email} />
-          ))}
+          <UserList />
         </div>
       </div>
     </>

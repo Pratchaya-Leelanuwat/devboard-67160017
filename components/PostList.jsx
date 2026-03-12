@@ -20,7 +20,7 @@ const PostList = ({ favorites, onToggleFavorite }) => {
         setLoading(true);
         setError(null);
         const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-        if (!res.ok) throw new Error("fetch failed");
+        if (!res.ok) throw new Error("ดึงข้อมูลไม่สำเร็จ");
         const data = await res.json();
         setPosts(data.slice(0, 20));
       } catch (err) {
