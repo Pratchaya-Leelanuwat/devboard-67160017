@@ -18,27 +18,21 @@ const AddPostForm = ({ onAddPost }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      style={{
-        border: "1px solid #e2e8f0",
-        borderRadius: "8px",
-        padding: "1rem",
-        marginBottom: "1.5rem",
-        background: "#f7fafc",
-      }}
+      className="border-2 border-blue-800 rounded-lg p-5 bg-[#f7fafc]"
     >
-      <h3 style={{ margin: "0 0 0.75rem", color: "#2d3748" }}>
+      <h3 className="text-xl font-bold text-blue-700 mb-2 text-center border-b-4 border-blue-800 border p-0.5">
         เพิ่มโพสต์ใหม่
       </h3>
 
       <div>
-        <div>
+        <div className="mb-2">
           {title.length > 10 ? (
-            <span style={{ display: "flex", alignItems: "center" }}>
-              <p style={{ color: "green" }}>{title.length}</p>/100
+            <span className="flex items-center">
+              <p className="text-green-500">{title.length}</p>/100
             </span>
           ) : (
-            <span style={{ display: "flex", alignItems: "center" }}>
-              <p style={{ color: "red" }}>{title.length}</p>/100
+            <span className="flex items-center">
+              <p className="text-red-500">{title.length}</p>/100
             </span>
           )}
         </div>
@@ -48,15 +42,7 @@ const AddPostForm = ({ onAddPost }) => {
           placeholder="หัวข้อโพสต์"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          style={{
-            width: "100%",
-            padding: "0.5rem",
-            marginBottom: "0.5rem",
-            border: "1px solid #cbd5e0",
-            borderRadius: "4px",
-            fontSize: "1rem",
-            boxSizing: "border-box",
-          }}
+          className="w-full p-2 mb-5 border border-blue-400 rounded-sm focus:border-transparent"
         />
       </div>
       <textarea
@@ -64,29 +50,12 @@ const AddPostForm = ({ onAddPost }) => {
         value={body}
         onChange={(e) => setBody(e.target.value)}
         rows={3}
-        style={{
-          width: "100%",
-          padding: "0.5rem",
-          marginBottom: "0.75rem",
-          border: "1px solid #cbd5e0",
-          borderRadius: "4px",
-          fontSize: "1rem",
-          resize: "vertical",
-          boxSizing: "border-box",
-        }}
+        className="w-full p-2 mb-5 border border-blue-400 rounded-sm focus:border-transparent"
       />
 
       <button
         type="submit"
-        style={{
-          background: "#1e40af",
-          color: "white",
-          border: "none",
-          padding: "0.5rem 1.5rem",
-          borderRadius: "6px",
-          cursor: "pointer",
-          fontSize: "1rem",
-        }}
+        className="w-full bg-blue-500! text-white p-2 rounded-sm hover:bg-blue-600"
       >
         โพสต์
       </button>

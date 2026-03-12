@@ -1,32 +1,13 @@
 const Navbar = ({ favoriteCount }) => {
   return (
-    <nav
-      style={{
-        background: "#1e40af",
-        color: "white",
-        padding: "1rem 2rem",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}
-    >
-      <div>
-        <h1 style={{ margin: 0, fontSize: "1.5rem" }}>DevBoard</h1>
-        <p style={{ margin: 0, fontSize: "0.9rem", opacity: 0.8 }}>
-          กระดานนักพัฒนา
-        </p>
+    <nav className="bg-blue-700 text-white py-5 px-10 flex justify-between items-center">
+      <div className="flex flex-col items-center">
+        <h1 className="text-lg font-bold">DevBoard</h1>
+        <p>กระดานนักพัฒนา</p>
       </div>
 
       {favoriteCount > 0 && (
-        <div
-          style={{
-            background: "#e53e3e",
-            borderRadius: "20px",
-            padding: "0.25rem 0.75rem",
-            fontSize: "0.9rem",
-            fontWeight: "bold",
-          }}
-        >
+        <div className="bg-red-600 rounded-lg py-2 px-5 font-bold border-2 border-white">
           ❤️ {favoriteCount} ถูกใจ
         </div>
       )}

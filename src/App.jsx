@@ -68,16 +68,7 @@ export default function App() {
   return (
     <>
       <Navbar favoriteCount={favorites.length} />
-      <div
-        style={{
-          maxWidth: "900px",
-          margin: "2rem auto",
-          padding: "0 1rem",
-          display: "grid",
-          gridTemplateColumns: "2fr 1fr",
-          gap: "2rem",
-        }}
-      >
+      <div className="max-w-7xl mx-auto grid grid-cols-2 gap-5 mt-10">
         <div>
           <AddPostForm onAddPost={handleAddPost} />
           {posts.length === 0 ? (
@@ -92,14 +83,8 @@ export default function App() {
         </div>
 
         <div>
-          <h2
-            style={{
-              color: "#2d3748",
-              borderBottom: "2px solid #1e40af",
-              paddingBottom: "0.5rem",
-            }}
-          >
-            สมาชิก
+          <h2 className="text-blue-800 text-xl font-bold text-center border border-b-4 p-2 mb-2">
+            รายชื่อสมาชิก
           </h2>
           {USERS.map((user) => (
             <UserCard key={user.id} name={user.name} email={user.email} />
