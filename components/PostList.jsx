@@ -1,14 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PostCard from "./PostCard";
 import PostCount from "./PostCount";
+import LoadingSpinner from "./LoadingSpinner";
 
-const PostList = ({ posts, favorites, onToggleFavorite }) => {
+const PostList = ({ favorites, onToggleFavorite }) => {
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState("oldest");
+  const [error, setError] = useState(null);
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const toggleSortOrder = () => {
     setSortOrder((order) => (order === "oldest" ? "newest" : "oldest"));
   };
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+        if (!res.ok) throw new Error("fetch failed");
+        const data = await res.json();
+        setPosts(data.slice(0, 20));
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPosts();
+  }, []);
+
   const filtered = posts.filter((post) =>
     post.title.toLowerCase().includes(search.toLocaleLowerCase()),
   );
@@ -20,6 +43,22 @@ const PostList = ({ posts, favorites, onToggleFavorite }) => {
       return b.id - a.id;
     }
   });
+  if (loading) return <LoadingSpinner />;
+
+  if (error)
+    return (
+      <div
+        style={{
+          padding: "1.5rem",
+          background: "#fff5f5",
+          border: "1px solid #fc8181",
+          borderRadius: "8px",
+          color: "#c53030",
+        }}
+      >
+        เกิดข้อผิดพลาด: {error}
+      </div>
+    );
 
   return (
     <div>
