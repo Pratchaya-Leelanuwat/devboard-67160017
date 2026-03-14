@@ -14,21 +14,21 @@ const PostList = ({ favorites, onToggleFavorite }) => {
     setSortOrder((order) => (order === "oldest" ? "newest" : "oldest"));
   };
 
+  const fetchPosts = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+      if (!res.ok) throw new Error("ดึงข้อมูลไม่สำเร็จ");
+      const data = await res.json();
+      setPosts(data.slice(0, 20));
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-        if (!res.ok) throw new Error("ดึงข้อมูลไม่สำเร็จ");
-        const data = await res.json();
-        setPosts(data.slice(0, 20));
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchPosts();
   }, []);
 
@@ -82,6 +82,9 @@ const PostList = ({ favorites, onToggleFavorite }) => {
             เก่าสุด
           </button>
         )}
+        <button className="bg-yellow-400! text-white" onClick={fetchPosts}>
+          รีโหลดโพสต์ใหม่
+        </button>
       </div>
 
       {sortedPosts.length == 0 && (
