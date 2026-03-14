@@ -45,8 +45,8 @@ const PostList = ({ favorites, onToggleFavorite }) => {
 
   return (
     <div>
-      <div className="flex items-center justify-between my-3">
-        <h2 className="text-lg font-bold text-blue-600">โพสต์ล่าสุด</h2>
+      <div className="flex items-center justify-between my-5">
+        <h2 className="text-2xl font-bold text-blue-600">โพสต์ล่าสุด</h2>
         <PostCount post={data} />
       </div>
       <input
@@ -54,26 +54,29 @@ const PostList = ({ favorites, onToggleFavorite }) => {
         placeholder="ค้นหาโพสต์ที่ต้องการ..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="text-gray-700 border p-1 border-blue-600 flex items-center gap-3 my-2"
+        className="text-gray-700 border p-2 border-blue-600 flex items-center gap-3 mt-2 mb-4 focus:outline-none focus:border-red-500"
       />
-      <div className="flex items-center gap-2 text-lg font-bold text-green-500">
+      <div className="flex items-center gap-2 text-xl font-bold text-green-500">
         <p>โพสต์เรียงตาม: </p>
         {sortOrder == "newest" ? (
           <button
             onClick={toggleSortOrder}
-            className="bg-blue-500! text-white px-3 py-1 rounded-lg hover:brightness-120"
+            className="bg-blue-500 text-white px-3 py-1 rounded-lg hover:brightness-120 active:brightness-80 cursor-pointer text-lg"
           >
             ใหม่สุด
           </button>
         ) : (
           <button
             onClick={toggleSortOrder}
-            className="bg-blue-500! text-white px-3 py-1 rounded-lg hover:brightness-120"
+            className="bg-blue-500 text-white px-3 py-1 rounded-lg hover:brightness-120 active:brightness-80 cursor-pointer text-lg"
           >
             เก่าสุด
           </button>
         )}
-        <button className="bg-yellow-400! text-white" onClick={reload}>
+        <button
+          className="bg-green-500 text-white px-3 py-1 rounded-lg hover:brightness-110 active:brightness-80 cursor-pointer text-lg"
+          onClick={reload}
+        >
           รีโหลดโพสต์ใหม่
         </button>
       </div>

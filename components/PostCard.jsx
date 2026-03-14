@@ -11,28 +11,14 @@ const PostCard = ({ post, isFavorite, onToggleFavorite }) => {
       <div className="flex items-center gap-5 mt-3">
         <button
           onClick={onToggleFavorite}
-          style={{
-            backgroundColor: isFavorite ? "red" : "white",
-            color: isFavorite ? "white" : "black",
-            border: "1px solid red",
-            borderRadius: "4px",
-            padding: "4px 8px",
-          }}
+          className={`${isFavorite ? "bg-red-500 text-white" : "bg-white text-black"} border border-blue-500 rounded-lg px-3 py-1.5 text-sm hover:bg-red-500 hover:text-white transition active:brightness-80`}
         >
           {isFavorite ? "❤️ ถูกใจแล้ว" : "🤍 ถูกใจ"}
         </button>
 
         <button
           onClick={() => setShowComments((prev) => !prev)}
-          style={{
-            background: "none",
-            border: "1px solid blue",
-            cursor: "pointer",
-            fontSize: "0.9rem",
-            padding: "4px 8px",
-            borderRadius: "4px",
-            color: "#4a5568",
-          }}
+          className="border border-gray-500 px-3 py-1.5 rounded-lg text-sm hover:bg-gray-500 hover:text-white transition active:brightness-80"
         >
           {showComments ? "▲ ซ่อน" : "▼ ดูความคิดเห็น"}
         </button>

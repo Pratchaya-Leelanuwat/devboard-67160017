@@ -28,7 +28,7 @@ export const CommentList = ({ postId }) => {
 
   return (
     <div className="mt-4">
-      <strong className="text-gray-400">ความคิดเห็น ({comments.length})</strong>
+      <strong className="text-red-500">ความคิดเห็น ({comments.length})</strong>
       {comments.map((comment) => (
         <div
           key={comment.id}
