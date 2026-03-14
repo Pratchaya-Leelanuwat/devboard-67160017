@@ -42,7 +42,7 @@ const AddPostForm = ({ onAddPost }) => {
           placeholder="หัวข้อโพสต์"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full p-2 mb-5 border border-blue-400 rounded-sm focus:outline-none focus:border-red-500"
+          className="w-full p-2 mb-5 border border-blue-400 rounded-sm focus:outline-none focus:border-green-500"
         />
       </div>
       <textarea
@@ -50,12 +50,12 @@ const AddPostForm = ({ onAddPost }) => {
         value={body}
         onChange={(e) => setBody(e.target.value)}
         rows={3}
-        className="w-full p-2 mb-5 border border-blue-400 rounded-sm focus:outline-none focus:border-red-500"
+        className="w-full p-2 mb-5 border border-blue-400 rounded-sm focus:outline-none focus:border-green-500"
       />
 
       <button
         type="submit"
-        className="w-full bg-blue-500 text-white p-2 rounded-sm hover:bg-red-500 transition cursor-pointer active:brightness-80"
+        className="w-full bg-blue-500 text-white p-2 rounded-sm hover:bg-green-500 transition cursor-pointer active:brightness-80"
       >
         โพสต์
       </button>

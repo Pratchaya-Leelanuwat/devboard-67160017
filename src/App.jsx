@@ -69,7 +69,6 @@ export default function App() {
             skeletonPosts.map((skeleton) => <PostSkeleton key={skeleton} />)
           ) : (
             <PostList
-              posts={posts}
               favorites={favorites}
               onToggleFavorite={handleToggleFavorite}
             />

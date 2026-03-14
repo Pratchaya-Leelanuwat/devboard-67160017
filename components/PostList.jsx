@@ -38,7 +38,7 @@ const PostList = ({ favorites, onToggleFavorite }) => {
 
   if (error)
     return (
-      <div className="p-5 bg-white border border-red-300 rounded-lg color-red-500">
+      <div className="p-5 bg-white border border-red-500 rounded-lg color-red-500">
         เกิดข้อผิดพลาด: {error}
       </div>
     );
@@ -54,7 +54,7 @@ const PostList = ({ favorites, onToggleFavorite }) => {
         placeholder="ค้นหาโพสต์ที่ต้องการ..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="text-gray-700 border p-2 border-blue-600 flex items-center gap-3 mt-2 mb-4 focus:outline-none focus:border-red-500"
+        className="text-gray-700 border p-2 border-blue-600 flex items-center gap-3 mt-2 mb-4 focus:outline-none focus:border-green-500"
       />
       <div className="flex items-center gap-2 text-xl font-bold text-green-500">
         <p>โพสต์เรียงตาม: </p>
