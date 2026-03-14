@@ -9,6 +9,13 @@ const PostList = ({ favorites, onToggleFavorite }) => {
   const [error, setError] = useState(null);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+
+  const setPostsInOnePage = (posts) => {
+    const start = (page - 1) * 10;
+    const end = start + 10;
+    return posts.slice(start, end);
+  };
 
   const toggleSortOrder = () => {
     setSortOrder((order) => (order === "oldest" ? "newest" : "oldest"));
@@ -43,6 +50,7 @@ const PostList = ({ favorites, onToggleFavorite }) => {
       return b.id - a.id;
     }
   });
+  const allPosts = setPostsInOnePage(sortedPosts);
   if (loading) return <LoadingSpinner />;
 
   if (error)
@@ -87,10 +95,10 @@ const PostList = ({ favorites, onToggleFavorite }) => {
         </button>
       </div>
 
-      {sortedPosts.length == 0 && (
+      {allPosts.length == 0 && (
         <p className="text-gray-400 text-center p-8">ไม่พบโพสต์ที่ต้องการ</p>
       )}
-      {sortedPosts.map((post) => (
+      {allPosts.map((post) => (
         <PostCard
           key={post.id}
           post={post}
@@ -98,6 +106,23 @@ const PostList = ({ favorites, onToggleFavorite }) => {
           onToggleFavorite={() => onToggleFavorite(post.id)}
         />
       ))}
+      <div className="my-5 flex items-center justify-center">
+        <button
+          className="bg-red-500! text-white px-3 py-1 rounded-lg hover:brightness-120 active:brightness-80"
+          onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+          disabled={page === 1}
+        >
+          ก่อนหน้า
+        </button>
+        <span className="mx-2">หน้า {page}</span>
+        <button
+          className="bg-blue-500! text-white px-3 py-1 rounded-lg hover:brightness-120 active:brightness-80"
+          onClick={() => setPage((prev) => prev + 1)}
+          disabled={page === Math.ceil(sortedPosts.length / 10)}
+        >
+          ถัดไป
+        </button>
+      </div>
     </div>
   );
 };
