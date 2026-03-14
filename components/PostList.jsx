@@ -2,44 +2,27 @@ import { useEffect, useState } from "react";
 import PostCard from "./PostCard";
 import PostCount from "./PostCount";
 import LoadingSpinner from "./LoadingSpinner";
+import { useFetch } from "../src/hooks/useFetch";
 
 const PostList = ({ favorites, onToggleFavorite }) => {
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState("oldest");
-  const [error, setError] = useState(null);
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
 
-  const setPostsInOnePage = (posts) => {
+  const { data, loading, error, reload } = useFetch(
+    "https://jsonplaceholder.typicode.com/posts",
+  );
+  const setPostsInOnePage = (data) => {
     const start = (page - 1) * 10;
     const end = start + 10;
-    return posts.slice(start, end);
+    return data.slice(start, end);
   };
 
   const toggleSortOrder = () => {
     setSortOrder((order) => (order === "oldest" ? "newest" : "oldest"));
   };
 
-  const fetchPosts = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-      if (!res.ok) throw new Error("ดึงข้อมูลไม่สำเร็จ");
-      const data = await res.json();
-      setPosts(data.slice(0, 20));
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-  useEffect(() => {
-    fetchPosts();
-  }, []);
-
-  const filtered = posts.filter((post) =>
+  const filtered = data.filter((post) =>
     post.title.toLowerCase().includes(search.toLocaleLowerCase()),
   );
 
@@ -64,7 +47,7 @@ const PostList = ({ favorites, onToggleFavorite }) => {
     <div>
       <div className="flex items-center justify-between my-3">
         <h2 className="text-lg font-bold text-blue-600">โพสต์ล่าสุด</h2>
-        <PostCount post={posts} />
+        <PostCount post={data} />
       </div>
       <input
         type="text"
@@ -90,7 +73,7 @@ const PostList = ({ favorites, onToggleFavorite }) => {
             เก่าสุด
           </button>
         )}
-        <button className="bg-yellow-400! text-white" onClick={fetchPosts}>
+        <button className="bg-yellow-400! text-white" onClick={reload}>
           รีโหลดโพสต์ใหม่
         </button>
       </div>
