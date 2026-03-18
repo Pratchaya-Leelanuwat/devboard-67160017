@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useFavorites } from "../context/FavoritesContext";
 import { Link } from "react-router-dom";
 
+// หน้ากดหัวใจ
 function FavoritesPage() {
   const { favorites, toggleFavorite } = useFavorites();
   const [posts, setPosts] = useState([]);
@@ -9,6 +10,7 @@ function FavoritesPage() {
   useEffect(() => {
     if (favorites.length === 0) return;
 
+    // fetch api ดึงโพสต์ที่กดถูกใจไว้
     async function fetchFavoritePosts() {
       const results = await Promise.all(
         favorites.map((id) =>

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+// แสดงหน้า Not Found ตอนที่ใส่ url ที่ไม่อยู่ในเว็บไซต์
 function NotFoundPage() {
   return (
     <div className="text-center py-5">

@@ -2,10 +2,12 @@ import { useSearchParams } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
 import PostCard from "../../components/PostCard";
 
+// แสดงหน้า search คือการพิมพ์ url ใน website แล้วจะแสดงหน้านี้
 function SearchPage() {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("q") || "";
 
+  // ใช้ useFetch ดึงข้อมูลโพสต์ แทนที่จากเดิมที่ fetch เอง
   const { data } = useFetch("https://jsonplaceholder.typicode.com/posts");
   const filteredPosts = data.filter((post) =>
     post.title.toLowerCase().includes(query.toLocaleLowerCase()),

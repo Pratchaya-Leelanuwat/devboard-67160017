@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useFavorites } from "../src/context/FavoritesContext";
 
 const Navbar = () => {
-  const { favorites } = useFavorites();
+  const { favorites } = useFavorites(); // เข้าไปยัง context เพื่อเอา favorites
   return (
     <nav className="bg-blue-700 text-white py-5 px-10 flex justify-between items-center">
       <div className="flex flex-col items-center">

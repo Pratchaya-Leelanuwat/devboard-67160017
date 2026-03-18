@@ -4,6 +4,7 @@ const AddPostForm = ({ onAddPost }) => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
+  // เมื่อกดปุ่่มส่งจะส่ง title และ body ไป
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!title.trim() || !body.trim()) {

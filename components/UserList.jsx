@@ -4,6 +4,7 @@ import UserCard from "./UserCard";
 import { useFetch } from "../src/hooks/useFetch";
 
 const UserList = () => {
+  // ใช้ useFetch ดึงข้อมูลสมาชิก แทนที่จากเดิมที่ fetch เอง
   const { data, loading, error } = useFetch(
     "https://jsonplaceholder.typicode.com/users",
   );
