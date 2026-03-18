@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PostCard from "./PostCard";
 import PostCount from "./PostCount";
 import LoadingSpinner from "./LoadingSpinner";
 import { useFetch } from "../src/hooks/useFetch";
 
-const PostList = ({ favorites, onToggleFavorite }) => {
+const PostList = () => {
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState("oldest");
   const [page, setPage] = useState(1);
@@ -85,12 +85,7 @@ const PostList = ({ favorites, onToggleFavorite }) => {
         <p className="text-gray-400 text-center p-8">ไม่พบโพสต์ที่ต้องการ</p>
       )}
       {allPosts.map((post) => (
-        <PostCard
-          key={post.id}
-          post={post}
-          isFavorite={favorites.includes(post.id)}
-          onToggleFavorite={() => onToggleFavorite(post.id)}
-        />
+        <PostCard key={post.id} post={post} />
       ))}
       <div className="my-5 flex items-center justify-center">
         <button
