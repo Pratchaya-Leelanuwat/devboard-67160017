@@ -27,7 +27,7 @@ function PostDetailPage() {
   const isFavorite = favorites.includes(post.id);
 
   return (
-    <div className="max-w-7xl mx-auto my-8 px-4">
+    <div className="max-w-3xl mx-auto my-8 px-4">
       <Link to="/" className="text-blue-700">
         ← กลับหน้าหลัก
       </Link>

@@ -3,7 +3,7 @@ import PostList from "../../components/PostList";
 
 function HomePage() {
   return (
-    <div style={{ maxWidth: "700px", margin: "2rem auto", padding: "0 1rem" }}>
+    <div className="max-w-3xl my-8 mx-auto px-4">
       <AddPostForm onAddPost={() => {}} />
       <PostList />
     </div>

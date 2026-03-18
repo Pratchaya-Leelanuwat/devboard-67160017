@@ -24,7 +24,7 @@ function FavoritesPage() {
 
   if (favorites.length === 0) {
     return (
-      <div className="max-w-7xl mx-auto my-8 px-4 text-center">
+      <div className="max-w-3xl mx-auto my-8 px-4 text-center">
         <p className="text-gray-500 text-lg">ยังไม่มีโพสต์ที่ถูกใจ</p>
         <Link to="/" className="text-blue-700">
           ← กลับหน้าหลัก
@@ -34,7 +34,7 @@ function FavoritesPage() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto my-8 px-4">
+    <div className="max-w-3xl mx-auto my-8 px-4">
       <h2 className="text-gray-800 border-b-2 border-red-600 pb-2">
         ❤️ โพสต์ที่ถูกใจ ({favorites.length})
       </h2>

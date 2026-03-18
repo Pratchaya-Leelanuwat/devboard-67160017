@@ -3,6 +3,7 @@ import PostCard from "./PostCard";
 import PostCount from "./PostCount";
 import LoadingSpinner from "./LoadingSpinner";
 import { useFetch } from "../src/hooks/useFetch";
+import PostSkeleton from "./PostSkeleton";
 
 const PostList = () => {
   const [search, setSearch] = useState("");
@@ -12,6 +13,10 @@ const PostList = () => {
   const { data, loading, error, reload } = useFetch(
     "https://jsonplaceholder.typicode.com/posts",
   );
+
+  //เอาไว้แสดงผลข้อมูล skeleton ตอนที่ไม่มีข้อมูล
+  const skeletonPosts = [1, 2, 3];
+
   const setPostsInOnePage = (data) => {
     const start = (page - 1) * 10;
     const end = start + 10;
@@ -34,7 +39,16 @@ const PostList = () => {
     }
   });
   const allPosts = setPostsInOnePage(sortedPosts);
-  if (loading) return <LoadingSpinner />;
+  if (loading)
+    return (
+      <div>
+        <LoadingSpinner />
+
+        {skeletonPosts.map((skeleton) => (
+          <PostSkeleton key={skeleton} />
+        ))}
+      </div>
+    );
 
   if (error)
     return (
@@ -42,7 +56,6 @@ const PostList = () => {
         เกิดข้อผิดพลาด: {error}
       </div>
     );
-
   return (
     <div>
       <div className="flex items-center justify-between my-5">
