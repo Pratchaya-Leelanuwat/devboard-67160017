@@ -1,10 +1,16 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const FavoritesContext = createContext();
 
 export function FavoritesProvider({ children }) {
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(() => {
+    const favoriteFromStorage = localStorage.getItem("favorites");
+    return favoriteFromStorage ? JSON.parse(favoriteFromStorage) : [];
+  });
 
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
   const toggleFavorite = (postId) => {
     setFavorites((prev) =>
       prev.includes(postId)

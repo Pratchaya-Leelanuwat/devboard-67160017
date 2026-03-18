@@ -4,12 +4,7 @@ import ProfilePage from "./pages/ProfilePage";
 import FavoritesPage from "./pages/FavoritesPage";
 import { FavoritesProvider } from "./context/FavoritesContext";
 import HomePage from "./pages/HomePage";
-import {
-  BrowserRouter,
-  Route,
-  Routes,
-  useSearchParams,
-} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PostDetailPage from "./pages/PostDetailPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import SearchPage from "./pages/SearchPage";
