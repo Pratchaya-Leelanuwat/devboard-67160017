@@ -6,6 +6,7 @@ import { FavoritesProvider } from "./context/FavoritesContext";
 import HomePage from "./pages/HomePage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PostDetailPage from "./pages/PostDetailPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 export default function App() {
   return (
@@ -18,6 +19,8 @@ export default function App() {
             <Route path="/posts/:id" element={<PostDetailPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/favorites" element={<FavoritesPage />} />
+
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </BrowserRouter>
       </FavoritesProvider>
