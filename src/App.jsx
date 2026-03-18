@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 
 import "./App.css";
 import Navbar from "../components/Navbar";
-import PostList from "../components/PostList";
-import AddPostForm from "../components/AddPostForm";
-import PostSkeleton from "../components/PostSkeleton";
-import UserList from "../components/UserList";
+import ProfilePage from "./pages/ProfilePage";
+import FavoritesPage from "./pages/FavoritesPage";
+import { FavoritesProvider } from "./context/FavoritesContext";
+import HomePage from "./pages/HomePage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import PostDetailPage from "./pages/PostDetailPage";
 
 const INITIAL_POSTS = [
   {
@@ -61,24 +63,17 @@ export default function App() {
 
   return (
     <>
-      <Navbar favoriteCount={favorites.length} />
-      <div className="max-w-7xl mx-auto grid grid-cols-2 gap-5 mt-10">
-        <div>
-          <AddPostForm onAddPost={handleAddPost} />
-          {posts.length === 0 ? (
-            skeletonPosts.map((skeleton) => <PostSkeleton key={skeleton} />)
-          ) : (
-            <PostList
-              favorites={favorites}
-              onToggleFavorite={handleToggleFavorite}
-            />
-          )}
-        </div>
-
-        <div>
-          <UserList />
-        </div>
-      </div>
+      <FavoritesProvider>
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<HomePage />} />x
+            <Route path="/posts/:id" element={<PostDetailPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/favorites" element={<FavoritesPage />} />
+          </Routes>
+        </BrowserRouter>
+      </FavoritesProvider>
     </>
   );
 }
