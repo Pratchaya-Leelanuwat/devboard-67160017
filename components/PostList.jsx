@@ -102,7 +102,7 @@ const PostList = () => {
       ))}
       <div className="my-5 flex items-center justify-center">
         <button
-          className="bg-red-500! text-white px-3 py-1 rounded-lg hover:brightness-120 active:brightness-80"
+          className={`bg-red-500 text-white px-3 py-1 rounded-lg hover:brightness-120 active:brightness-80 ${page === 1 ? "opacity-50 cursor-not-allowed" : ""}`}
           onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
           disabled={page === 1}
         >
@@ -110,7 +110,7 @@ const PostList = () => {
         </button>
         <span className="mx-2">หน้า {page}</span>
         <button
-          className="bg-blue-500! text-white px-3 py-1 rounded-lg hover:brightness-120 active:brightness-80"
+          className={`bg-blue-500 text-white px-3 py-1 rounded-lg hover:brightness-120 active:brightness-80 ${page === Math.ceil(sortedPosts.length / 10) ? "opacity-50 cursor-not-allowed" : ""}`}
           onClick={() => setPage((prev) => prev + 1)}
           disabled={page === Math.ceil(sortedPosts.length / 10)}
         >
