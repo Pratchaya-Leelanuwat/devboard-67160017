@@ -7,7 +7,6 @@ export const CommentList = ({ postId }) => {
     `https://jsonplaceholder.typicode.com/posts/${postId}/comments`,
     postId,
   );
-  console.log(data);
   if (loading) return <p className="text-gray-500">กำลังโหลดความคิดเห็น...</p>;
   if (error) return <p className="text-red-500">{error}</p>;
 

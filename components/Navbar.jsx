@@ -17,11 +17,9 @@ const Navbar = () => {
           สมาชิก
         </Link>
         <Link to="/favorites" className="text-lg font-bold text-white">
-          {favorites.length > 0 && (
-            <div className="bg-red-600 rounded-lg py-2 px-5 font-bold border-2 border-white">
-              ❤️ {favorites.length} ถูกใจ
-            </div>
-          )}
+          <div className="bg-red-600 rounded-lg py-2 px-5 font-bold border-2 border-white">
+            ❤️ {favorites.length} ถูกใจ
+          </div>
         </Link>
       </div>
     </nav>

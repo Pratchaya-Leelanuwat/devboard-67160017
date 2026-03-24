@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 // สร้าง custom hook สำหรับการ fetch ข้อมูล (id รับเพื่อให้ useEffect รันใหม่เมื่อ id เปลี่ยนตอนแสดงรายละเอียดโพสต์)
-export const useFetch = (url, id) => {
+export const useFetch = (url) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);

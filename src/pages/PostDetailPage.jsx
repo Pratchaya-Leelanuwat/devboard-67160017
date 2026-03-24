@@ -1,24 +1,19 @@
 import { Link, useParams } from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { useFavorites } from "../context/FavoritesContext";
-import { useState, useEffect } from "react";
 import { CommentList } from "../../components/CommentList";
-import { useFetch } from "../hooks/useFetch";
 
 // แสดงหน้า รายละเอียดแต่ละโพสต์
-function PostDetailPage() {
+function PostDetailPage({ posts }) {
   const { id } = useParams(); // ดึง id จาก url
   const { favorites, toggleFavorite } = useFavorites();
 
   // fetch จาก api ตาม id โดยใช้ useFetch แทนที่จากเดิมที่ fetch เอง
-  const { data, loading } = useFetch(
-    `https://jsonplaceholder.typicode.com/posts/${id}`,
-    id,
-  );
-  console.log("data", data);
-  if (loading) return <LoadingSpinner />;
+  const post = posts.find((post) => post.id === Number(id));
 
-  const isFavorite = favorites.includes(data.id);
+  if (!post) return <LoadingSpinner />;
+
+  const isFavorite = favorites.includes(post.id);
 
   return (
     <div className="max-w-3xl mx-auto my-8 px-4">
@@ -27,12 +22,12 @@ function PostDetailPage() {
       </Link>
 
       <div className="border border-gray-200 rounded-lg p-6 my-4 bg-white">
-        <h2 className="mb-4 text-blue-700">{data.title}</h2>
+        <h2 className="mb-4 text-blue-700">{post.title}</h2>
 
-        <p className="text-gray-600">{data.body}</p>
+        <p className="text-gray-600">{post.body}</p>
 
         <button
-          onClick={() => toggleFavorite(data.id)}
+          onClick={() => toggleFavorite(post.id)}
           className={`bg-transparent border-none cursor-pointer text-base ${
             isFavorite ? "text-red-600" : "text-gray-400"
           }`}
@@ -42,7 +37,7 @@ function PostDetailPage() {
       </div>
 
       {/* แสดง comment */}
-      <CommentList postId={data.id} />
+      <CommentList postId={post.id} />
     </div>
   );
 }

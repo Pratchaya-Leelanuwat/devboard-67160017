@@ -7,10 +7,9 @@ const AddPostForm = ({ onAddPost }) => {
   // เมื่อกดปุ่่มส่งจะส่ง title และ body ไป
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!title.trim() || !body.trim()) {
-      return "";
+    if (title.length < 10 || title.length > 100 || !body.trim()) {
+      return;
     }
-
     onAddPost({ title, body });
     setTitle("");
     setBody("");
@@ -27,7 +26,7 @@ const AddPostForm = ({ onAddPost }) => {
 
       <div>
         <div className="mb-2">
-          {title.length > 10 ? (
+          {title.length >= 10 ? (
             <span className="flex items-center">
               <p className="text-green-500">{title.length}</p>/100
             </span>
@@ -56,7 +55,7 @@ const AddPostForm = ({ onAddPost }) => {
 
       <button
         type="submit"
-        className="w-full bg-blue-500 text-white p-2 rounded-sm hover:bg-green-500 transition cursor-pointer active:brightness-80"
+        className="w-full bg-blue-500 text-white font-bold p-2 rounded-sm hover:bg-green-500 transition cursor-pointer active:brightness-80"
       >
         โพสต์
       </button>

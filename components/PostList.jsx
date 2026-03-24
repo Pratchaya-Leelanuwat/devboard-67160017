@@ -2,33 +2,26 @@ import { useState } from "react";
 import PostCard from "./PostCard";
 import PostCount from "./PostCount";
 import LoadingSpinner from "./LoadingSpinner";
-import { useFetch } from "../src/hooks/useFetch";
 import PostSkeleton from "./PostSkeleton";
 
-const PostList = () => {
+const PostList = ({ posts, loading, error, reload }) => {
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState("oldest");
   const [page, setPage] = useState(1);
 
-  // ใช้ useFetch ดึงข้อมูล โพสต์ ของแต่ละโพสต์ แทนที่จากเดิมที่ fetch เอง
-  const { data, loading, error, reload } = useFetch(
-    "https://jsonplaceholder.typicode.com/posts",
-  );
   // เอาไว้แสดงผลข้อมูล skeleton ตอนที่ไม่มีข้อมูล
   const skeletonPosts = [1, 2, 3];
 
   // เซ็ตให้โพสต์แสดงได้ทีละ 10 โพสต์ต่อหน้า
-  const setPostsInOnePage = (data) => {
+  const setPostsInOnePage = (posts) => {
     const start = (page - 1) * 10;
     const end = start + 10;
-    return data.slice(start, end);
+    return posts.slice(start, end);
   };
-
   // กรองโพสต์ตามคำค้นหา
-  const filtered = data.filter((post) =>
+  const filtered = posts.filter((post) =>
     post.title.toLowerCase().includes(search.toLocaleLowerCase()),
   );
-
   const toggleSortOrder = () => {
     setSortOrder((order) => (order === "oldest" ? "newest" : "oldest"));
   };
@@ -64,7 +57,7 @@ const PostList = () => {
       <div className="flex items-center justify-between my-5">
         {/* นับจำนวนโพสต์ */}
         <h2 className="text-2xl font-bold text-blue-600">โพสต์ล่าสุด</h2>
-        <PostCount post={data} />
+        <PostCount post={posts} />
       </div>
       {/* ตัว search ค้นหา */}
       <input
