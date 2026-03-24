@@ -12,6 +12,7 @@ import { useFetch } from "./hooks/useFetch";
 import { useEffect, useState } from "react";
 
 export default function App() {
+  // ใช้ useFetch ดึงข้อมูลโพสต์ทั้งหมดเพื่อที่จะให้ทุก component เข้าถึงได้เลย
   const { data, loading, error, reload } = useFetch(
     "https://jsonplaceholder.typicode.com/posts",
   );
@@ -23,12 +24,12 @@ export default function App() {
   }, [data]);
 
   const handleAddPost = (newPost) => {
-    const postWithId = {
+    const post = {
       ...newPost,
       id: Date.now(),
     };
 
-    setPosts((prev) => [postWithId, ...prev]);
+    setPosts((prev) => [post, ...prev]);
   };
   return (
     <FavoritesProvider>
@@ -49,7 +50,7 @@ export default function App() {
           />
           <Route path="/posts/:id" element={<PostDetailPage posts={posts} />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/favorites" element={<FavoritesPage />} />
+          <Route path="/favorites" element={<FavoritesPage posts={posts} />} />
           <Route path="/search" element={<SearchPage posts={posts} />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

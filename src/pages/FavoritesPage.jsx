@@ -1,28 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useFavorites } from "../context/FavoritesContext";
 import { Link } from "react-router-dom";
 
 // หน้ากดหัวใจ
-function FavoritesPage() {
+function FavoritesPage({ posts }) {
   const { favorites, toggleFavorite } = useFavorites();
-  const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    if (favorites.length === 0) return;
-
-    // fetch api ดึงโพสต์ที่กดถูกใจไว้
-    async function fetchFavoritePosts() {
-      const results = await Promise.all(
-        favorites.map((id) =>
-          fetch(`https://jsonplaceholder.typicode.com/posts/${id}`).then((r) =>
-            r.json(),
-          ),
-        ),
-      );
-      setPosts(results);
-    }
-    fetchFavoritePosts();
-  }, [favorites]);
+  const favoritePosts = posts.filter((post) => favorites.includes(post.id));
 
   if (favorites.length === 0) {
     return (
@@ -41,7 +25,7 @@ function FavoritesPage() {
         ❤️ โพสต์ที่ถูกใจ ({favorites.length})
       </h2>
 
-      {posts.map((post) => (
+      {favoritePosts.map((post) => (
         <div
           key={post.id}
           className="border border-gray-200 rounded-lg p-4 mb-4 bg-white"
