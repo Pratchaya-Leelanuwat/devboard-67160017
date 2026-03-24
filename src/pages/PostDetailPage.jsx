@@ -8,7 +8,7 @@ function PostDetailPage({ posts }) {
   const { id } = useParams(); // ดึง id จาก url
   const { favorites, toggleFavorite } = useFavorites();
 
-  // fetch จาก api ตาม id โดยใช้ useFetch แทนที่จากเดิมที่ fetch เอง
+  // หาโพสต์ที่ id ตรงกัน
   const post = posts.find((post) => post.id === Number(id));
 
   if (!post) return <LoadingSpinner />;

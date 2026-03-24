@@ -6,7 +6,6 @@ function SearchPage({ posts }) {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("q") || "";
 
-  // ใช้ useFetch ดึงข้อมูลโพสต์ แทนที่จากเดิมที่ fetch เอง
   const filteredPosts = posts.filter((post) =>
     post.title.toLowerCase().includes(query.toLocaleLowerCase()),
   );

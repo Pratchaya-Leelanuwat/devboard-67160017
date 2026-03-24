@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import LoadingSpinner from "./LoadingSpinner";
 import UserCard from "./UserCard";
 import { useFetch } from "../src/hooks/useFetch";

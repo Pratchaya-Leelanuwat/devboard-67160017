@@ -18,6 +18,7 @@ const PostList = ({ posts, loading, error, reload }) => {
     const end = start + 10;
     return posts.slice(start, end);
   };
+
   // กรองโพสต์ตามคำค้นหา
   const filtered = posts.filter((post) =>
     post.title.toLowerCase().includes(search.toLocaleLowerCase()),
