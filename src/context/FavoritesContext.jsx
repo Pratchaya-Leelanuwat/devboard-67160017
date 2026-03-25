@@ -7,7 +7,6 @@ export function FavoritesProvider({ children }) {
     const favoriteFromStorage = localStorage.getItem("favorites");
     return favoriteFromStorage ? JSON.parse(favoriteFromStorage) : [];
   });
-
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);

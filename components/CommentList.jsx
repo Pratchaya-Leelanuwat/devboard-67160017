@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useFetch } from "../src/hooks/useFetch";
 
 export const CommentList = ({ postId }) => {
-  // ใช้ useFetch ดึงข้อมูล comment ของแต่ละโพสต์ แทนที่จากเดิมที่ fetch เอง
   const { data, loading, error } = useFetch(
     `https://jsonplaceholder.typicode.com/posts/${postId}/comments`,
     postId,

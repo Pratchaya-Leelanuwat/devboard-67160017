@@ -27,7 +27,7 @@ const PostCard = ({ post }) => {
         </button>
 
         <button
-          onClick={() => setShowComments((prev) => !prev)}
+          onClick={() => setShowComments(!showComments)}
           className="border border-gray-500 px-3 py-1.5 rounded-lg text-sm hover:bg-gray-500 hover:text-white transition active:brightness-80"
         >
           {showComments ? "▲ ซ่อน" : "▼ ดูความคิดเห็น"}

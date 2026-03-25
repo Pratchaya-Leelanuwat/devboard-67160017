@@ -1,8 +1,9 @@
 import { useFavorites } from "../context/FavoritesContext";
 import { Link } from "react-router-dom";
+import { usePosts } from "../context/PostsContext";
 
-// หน้ากดหัวใจ
-function FavoritesPage({ posts }) {
+function FavoritesPage() {
+  const { posts } = usePosts();
   const { favorites, toggleFavorite } = useFavorites();
 
   const favoritePosts = posts.filter((post) => favorites.includes(post.id));

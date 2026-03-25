@@ -1,11 +1,12 @@
 import { useSearchParams } from "react-router-dom";
 import PostCard from "../../components/PostCard";
+import { usePosts } from "../context/PostsContext";
 
-// แสดงหน้า search คือการพิมพ์ url ใน website แล้วจะแสดงหน้านี้
-function SearchPage({ posts }) {
+function SearchPage() {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("q") || "";
 
+  const { posts } = usePosts();
   const filteredPosts = posts.filter((post) =>
     post.title.toLowerCase().includes(query.toLocaleLowerCase()),
   );

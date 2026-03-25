@@ -1,16 +1,16 @@
 import { useState } from "react";
+import { usePosts } from "../src/context/PostsContext";
 
-const AddPostForm = ({ onAddPost }) => {
+const AddPostForm = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-
-  // เมื่อกดปุ่่มส่งจะส่ง title และ body ไป
+  const { handleAddPost } = usePosts();
   const handleSubmit = (e) => {
     e.preventDefault();
     if (title.length < 10 || title.length > 100 || !body.trim()) {
       return;
     }
-    onAddPost({ title, body });
+    handleAddPost({ title, body });
     setTitle("");
     setBody("");
   };

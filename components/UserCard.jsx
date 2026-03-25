@@ -7,7 +7,6 @@ const UserCard = ({ name, email }) => {
   const charCode = name.charCodeAt(0);
   const colorIndex = charCode % 3;
   console.log(charCode, colorIndex);
-  // เปลี่ยนสีตามตัวอักษรแรกของชื่อสมาชิก
   let avatarColor = "";
   switch (colorIndex) {
     case 0:

@@ -2,13 +2,13 @@ import { Link, useParams } from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { useFavorites } from "../context/FavoritesContext";
 import { CommentList } from "../../components/CommentList";
+import { usePosts } from "../context/PostsContext";
 
-// แสดงหน้า รายละเอียดแต่ละโพสต์
-function PostDetailPage({ posts }) {
-  const { id } = useParams(); // ดึง id จาก url
+function PostDetailPage() {
+  const { id } = useParams();
+  const { posts } = usePosts();
   const { favorites, toggleFavorite } = useFavorites();
 
-  // หาโพสต์ที่ id ตรงกัน
   const post = posts.find((post) => post.id === Number(id));
 
   if (!post) return <LoadingSpinner />;
@@ -36,7 +36,6 @@ function PostDetailPage({ posts }) {
         </button>
       </div>
 
-      {/* แสดง comment */}
       <CommentList postId={post.id} />
     </div>
   );
