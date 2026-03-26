@@ -5,10 +5,9 @@ import { usePosts } from "../context/PostsContext";
 function SearchPage() {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("q") || "";
-
   const { posts } = usePosts();
   const filteredPosts = posts.filter((post) =>
-    post.title.toLowerCase().includes(query.toLocaleLowerCase()),
+    post.title.toLowerCase().includes(query.toLowerCase()),
   );
 
   return (

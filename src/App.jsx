@@ -9,7 +9,6 @@ import PostDetailPage from "./pages/PostDetailPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import SearchPage from "./pages/SearchPage";
 import { PostsProvider } from "./context/PostsContext";
-
 export default function App() {
   return (
     <PostsProvider>

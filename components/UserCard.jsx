@@ -3,10 +3,8 @@ const UserCard = ({ name, email }) => {
     .split(" ")
     .map((n) => n[0])
     .join("");
-
   const charCode = name.charCodeAt(0);
   const colorIndex = charCode % 3;
-  console.log(charCode, colorIndex);
   let avatarColor = "";
   switch (colorIndex) {
     case 0:
@@ -24,7 +22,7 @@ const UserCard = ({ name, email }) => {
   return (
     <div className="flex items-center gap-4 border border-blue-200 rounded-lg p-4 mb-4 bg-white shadow-lg">
       <div
-        className={`flex items-center justify-center rounded-full text-white font-bold p-2 ${avatarColor === "blue" ? "bg-blue-500" : avatarColor === "green" ? "bg-green-500" : "bg-purple-500"}`}
+        className={`w-10 flex items-center justify-center rounded-full text-white font-bold p-2 text-sm ${avatarColor === "blue" ? "bg-blue-500" : avatarColor === "green" ? "bg-green-500" : "bg-purple-500"}`}
       >
         {initials}
       </div>

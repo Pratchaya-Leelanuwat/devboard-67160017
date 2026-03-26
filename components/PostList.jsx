@@ -101,7 +101,7 @@ const PostList = () => {
       <div className="my-5 flex items-center justify-center">
         <button
           className={`bg-red-500 text-white px-3 py-1 rounded-lg hover:brightness-120 active:brightness-80 ${page === 1 ? "opacity-50 cursor-not-allowed" : ""}`}
-          onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+          onClick={() => setPage((prev) => prev - 1)}
           disabled={page === 1}
         >
           ก่อนหน้า
